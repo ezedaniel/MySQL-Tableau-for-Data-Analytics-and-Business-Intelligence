@@ -62,10 +62,7 @@ UPDATE Project..housing
 SET Property_city = SUBSTRING(PropertyAddress, CHARINDEX(',',PropertyAddress)+1, LEN(PropertyAddress))
 
 --We need to do the same wth the owner address
-SELECT
-PARSENAME(REPLACE(OwnerAddress,',','.'),3) as Address,
-PARSENAME(REPLACE(OwnerAddress,',','.'),2) as City,
-PARSENAME(REPLACE(OwnerAddress,',','.'),1) as State
+SELECT PARSENAME(REPLACE(OwnerAddress,',','.'),3) as Address, PARSENAME(REPLACE(OwnerAddress,',','.'),2) as City, PARSENAME(REPLACE(OwnerAddress,',','.'),1) as State
 FROM Project..housing
 
 ALTER TABLE Project..housing
@@ -146,7 +143,6 @@ FROM RowNumCTE
 WHERE row_num>1
 
 --Delete unused columns
-
 Select *
 FROM Project..housing
 
